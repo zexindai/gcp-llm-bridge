@@ -1,0 +1,22 @@
+name: gcp-llm-bridge
+services:
+  gcp-llm-bridge:
+    build: .
+    image: gcp-llm-bridge:local
+    env_file:
+      - path: .env
+        format: raw
+    ports:
+      - "${BIND_IP:-127.0.0.1}:${PORT:-4000}:${PORT:-4000}"
+    restart: unless-stopped
+    init: true
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
