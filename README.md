@@ -77,7 +77,7 @@ google/gemma-4-26b-a4b-it-maas
 
 ## Sponsor
 
-如果这个项目对你有帮助（更方便地花了GCP的300刀赠金），欢迎通过 [PayPal](https://www.paypal.com/paypalme/ZexinDai) 或下方微信赞赏码请我喝一杯咖啡，帮助项目持续维护和改进。感谢你的支持！
+如果这个项目对你有帮助（比如更方便地花了GCP的300刀赠金），欢迎通过 [PayPal](https://www.paypal.com/paypalme/ZexinDai) 或下方微信赞赏码请我喝一杯咖啡，帮助项目持续维护和改进。感谢你的支持！
 
 <img src="docs/assets/wechat-sponsor.png" alt="Zexin 的微信赞赏码" width="280" />
 
