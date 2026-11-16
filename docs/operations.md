@@ -56,25 +56,6 @@ docker compose -f compose.build.yaml up -d --build
 docker compose -f compose.build.yaml up -d --force-recreate
 ```
 
-## 发布镜像
-
-[GitHub Actions 工作流](../.github/workflows/docker.yml) 在推送 `main`、`master` 或提交 PR 时构建镜像。推送版本标签时，构建成功后自动发布 `linux/amd64` 和 `linux/arm64` 镜像到 `ghcr.io/<账号>/<仓库>`，生成版本标签和 `latest`。
-
-1. 将项目推送到自己的 GitHub 仓库，并确认 Actions 已启用。
-2. 将 `package.json` 的 `version` 设为待发布版本并提交，例如 `0.1.0`。
-3. 推送对应标签，版本必须与 `package.json` 一致：
-
-   ```bash
-   git tag v0.1.0
-   git push origin v0.1.0
-   ```
-
-4. 在仓库的 Actions 页面确认发布成功。首次发布后，在账号的 Packages 中将该镜像的可见性设为 Public，其他人即可匿名拉取。公开仓库不代表新建镜像包会自动公开。
-
-工作流使用 GitHub 自动提供的 `GITHUB_TOKEN` 登录 GHCR，无需配置个人令牌、Google Key 或 Bridge Key。每个版本标签均发布一个稳定版本，例如 `v0.1.0` 对应镜像标签 `0.1.0`；每次成功发布同时更新 `latest`。
-
-参考：[GitHub 镜像发布](https://docs.github.com/en/actions/tutorials/publish-packages/publish-docker-images)、[GHCR 权限与可见性](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)。
-
 ## Nginx 域名配置
 
 项目根目录提供 Nginx 配置模板：

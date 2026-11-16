@@ -12,7 +12,7 @@ CC Switch 负责 Responses 与 Chat Completions 的协议转换。Bridge 校验�
 
 ## 快速开始
 
-需要 Docker Compose 2.30.0 或更新版本。预构建镜像的部署与发布方式见 [部署说明](docs/operations.md#使用预构建镜像)。
+需要 Docker Compose 2.30.0 或更新版本。预构建镜像的部署方式见 [部署说明](docs/operations.md#使用预构建镜像)。
 
 Windows 用户建议使用 Docker Desktop，启用 WSL 2 引擎并使用 Linux 容器模式。
 
