@@ -1,0 +1,19 @@
+.env
+.env.*
+.env-*
+!.env.example
+node_modules/
+coverage/
+reports/
+*.log
+*-handoff.zip
+
+# Host-specific configuration and original handoff/evidence (kept locally).
+/local/
+/gcp-llm-bridge.conf
+
+# Workspace metadata managed by the host, not project source.
+/.agents/
+/.aws/
+/.codex/
+/.codex-attachments/
