@@ -58,7 +58,7 @@ docker compose -f compose.build.yaml up -d --force-recreate
 
 ## 发布镜像
 
-[GitHub Actions 工作流](../.github/workflows/docker.yml) 在推送 `main`、`master` 或提交 PR 时执行测试、镜像构建和隔离容器检查。推送版本标签时，通过检查后自动发布 `linux/amd64` 和 `linux/arm64` 镜像到 `ghcr.io/<账号>/<仓库>`，生成版本标签和 `latest`。
+[GitHub Actions 工作流](../.github/workflows/docker.yml) 在推送 `main`、`master` 或提交 PR 时构建镜像。推送版本标签时，构建成功后自动发布 `linux/amd64` 和 `linux/arm64` 镜像到 `ghcr.io/<账号>/<仓库>`，生成版本标签和 `latest`。
 
 1. 将项目推送到自己的 GitHub 仓库，并确认 Actions 已启用。
 2. 将 `package.json` 的 `version` 设为待发布版本并提交，例如 `0.1.0`。

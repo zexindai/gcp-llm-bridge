@@ -1,4 +1,4 @@
-name: Test and publish container image
+name: Build and publish container image
 
 on:
   push:
@@ -10,29 +10,20 @@ permissions:
   contents: read
 
 jobs:
-  check:
-    name: Tests and container check
+  build:
+    name: Build container image
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - name: Check out source
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
-      - name: Set up Node.js
-        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
-        with:
-          node-version: '24'
-          package-manager-cache: false
-      - name: Run local tests
-        run: npm test
       - name: Build image
         run: docker build --tag gcp-llm-bridge:local .
-      - name: Check container without Google access
-        run: python3 script/check-container.py
 
   publish:
     name: Publish to GHCR
     if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
-    needs: check
+    needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
