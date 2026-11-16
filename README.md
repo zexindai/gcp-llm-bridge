@@ -29,6 +29,8 @@ Windows 用户建议使用 Docker Desktop，启用 WSL 2 引擎并使用 Linux �
    curl --fail http://127.0.0.1:4000/healthz
    ```
 
+4. 参考 [CC Switch 接入](https://github.com/zexindai/gcp-llm-bridge/blob/master/docs/cc-switch.md) 完成配置。
+
 默认拉取 `ghcr.io/zexindai/gcp-llm-bridge:latest`，可在 `.env` 中通过 `BRIDGE_IMAGE` 指定版本或其他镜像。需要从源码构建时，见 [本地构建](docs/operations.md#本地构建)。
 
 ## 接口与密钥
