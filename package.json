@@ -1,0 +1,17 @@
+{
+  "name": "gcp-llm-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "A streaming authentication bridge for Google's OpenAI-compatible endpoint",
+  "engines": { "node": ">=24 <25" },
+  "scripts": {
+    "start": "node --env-file=.env src/server.mjs",
+    "test": "node --test test/*.test.mjs",
+    "smoke": "node --env-file=.env script/smoke.mjs",
+    "probe:responses": "node --env-file=.env script/probe-openai-responses.mjs",
+    "probe:claude": "node --env-file=.env script/probe-claude.mjs",
+    "probe:models": "node --env-file=.env script/probe-models.mjs"
+  }
+}
