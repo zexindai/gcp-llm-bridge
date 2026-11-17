@@ -20,7 +20,7 @@ chmod 600 .env
 | 变量 | 用途 |
 | --- | --- |
 | `BRIDGE_API_KEY` | 客户端发给 Bridge 的 Bearer Key，至少 24 字符，与服务端完全一致（可自定义） |
-| `GOOGLE_API_KEY` | 用于 Agent Platform（原 Vertex AI）Chat Completions 入口的 Google 静态 Key，仅放入 `x-goog-api-key` |
+| `GOOGLE_API_KEY` | 用于 Agent Platform（原 Vertex AI） 入口的 Google 静态 Key，仅放入 `x-goog-api-key` |
 
 将 `BRIDGE_API_KEY` 设置为独立的随机字符串，并在客户端填写相同值。两把密钥必须不同。Bridge 校验客户端认证后，仅向 Google 发送服务端配置的 Key。
 
@@ -55,6 +55,7 @@ docker compose up -d --force-recreate
 当前 Compose 会同时将宿主机端口和容器端口改为 `5000`，无需编辑 `compose.yaml`。健康检查地址也改为 `http://BRIDGE_HOST:5000/healthz`，其中 `BRIDGE_HOST` 为客户端可访问的宿主机地址。
 
 - **CC Switch 直连 Bridge**：将完整请求地址改为 `http://BRIDGE_HOST:5000/v1/chat/completions`。
+- **Responses 客户端**：将 base URL 改为 `http://BRIDGE_HOST:5000/v1`；完整接口地址为 `http://BRIDGE_HOST:5000/v1/responses`。
 - **通过 Nginx 域名连接**：将 Nginx 配置中的 `proxy_pass` 端口改为 `5000`，按 [部署与 Nginx](operations.md#nginx-域名配置) 安装更新后的配置、检查并重新加载；CC Switch 的域名请求地址保持不变。
 
 ## 上游地址
@@ -74,18 +75,20 @@ UPSTREAM_URL=https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locat
 
 ## 模型目录
 
-[models.txt](../models.txt) 和 `.env.example` 提供模型目录示例。实际展示列表由 `.env` 中的 `AVAILABLE_MODELS` 决定，多个模型 ID 用逗号分隔，例如：
+[doc/models.txt](../doc/models.txt) 和 `.env.example` 提供模型目录示例。实际展示列表由 `.env` 中的 `AVAILABLE_MODELS` 决定，多个模型 ID 用逗号分隔，例如：
 
 ```dotenv
 AVAILABLE_MODELS=google/gemini-4-argon,google/gemini-3.8-flash
 ```
 
-修改 `models.txt` 不会自动更新运行配置。
+修改 `doc/models.txt` 不会自动更新运行配置。
 
 `GET /v1/models` 从 `AVAILABLE_MODELS` 生成 OpenAI models 格式，`owned_by` 使用 publisher 前缀。这个目录：
 
 - 不实时查询 Google 权限。
-- 不限制 `/v1/chat/completions` 正文使用其他模型 ID。
+- 不限制 `/v1/chat/completions` 或 `/v1/responses` 正文使用其他模型 ID。
+
+`GET /v1/codex/models` 是额外的 Codex 能力目录接口，返回内置的 Argon、Hydrogen、Carbon 定义与 AVAILABLE_MODELS 的交集。它与 `/v1/models` 的格式和用途不同，客户端配置参考 [config.toml.example](../config/codex/config.toml.example)。
 
 ## 应用修改
 
