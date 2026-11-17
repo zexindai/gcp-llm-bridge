@@ -1,0 +1,25 @@
+# Merge these root keys before the first [table] in your existing config.toml.
+model = "google/gemini-4-argon"
+model_provider = "gcp_bridge"
+model_reasoning_effort = "low"
+model_reasoning_summary = "none"
+model_catalog_json = "models.json"
+web_search = "live"
+
+[features]
+standalone_web_search = true
+
+# Merge or replace the existing provider table; do not duplicate table headers.
+[model_providers.gcp_bridge]
+name = "GCP LLM Bridge"
+base_url = "https://api.example.com/v1"
+experimental_bearer_token = "REPLACE_WITH_BRIDGE_API_KEY"
+wire_api = "responses"
+requires_openai_auth = false
+supports_websockets = false
+supports_standalone_web_search = true
+stream_idle_timeout_ms = 630000
+
+[model_providers.gcp_bridge.capabilities]
+remote_compaction = "unsupported"
+external_web_access = true
