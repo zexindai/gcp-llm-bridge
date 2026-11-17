@@ -4,9 +4,10 @@
   "private": true,
   "license": "MIT",
   "type": "module",
-  "description": "A streaming authentication bridge for Google's OpenAI-compatible endpoint",
+  "description": "A streaming authentication bridge with Responses API compatibility for Google's OpenAI-compatible endpoint",
   "engines": { "node": ">=24 <25" },
   "scripts": {
-    "start": "node --env-file=.env src/server.mjs"
+    "start": "node --env-file=.env src/server.mjs",
+    "test": "node --test local/test/*.test.mjs"
   }
 }

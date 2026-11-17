@@ -4,6 +4,7 @@ LABEL org.opencontainers.image.licenses="MIT"
 WORKDIR /app
 COPY --chown=node:node package.json LICENSE ./
 COPY --chown=node:node src ./src
+COPY --chown=node:node config/codex/models.json ./config/codex/models.json
 USER node
 EXPOSE 4000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
