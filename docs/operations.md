@@ -31,7 +31,7 @@ docker compose down
 默认 `compose.yaml` 从 GHCR 拉取镜像，无需本地构建。先按 [配置说明](configuration.md) 填写 `.env`。默认镜像为 `ghcr.io/zexindai/gcp-llm-bridge:latest`，需要固定版本时修改：
 
 ```dotenv
-BRIDGE_IMAGE=ghcr.io/zexindai/gcp-llm-bridge:0.1.0
+BRIDGE_IMAGE=ghcr.io/zexindai/gcp-llm-bridge:0.2.0
 ```
 
 拉取并启动：
