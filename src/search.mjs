@@ -13,7 +13,7 @@ export function functionName(name, namespace) {
 export function validateSearchOptions(tool, param = 'tools') {
   if (!object(tool)) throw new ResponsesError('Expected search settings.', param);
   if (tool.external_web_access === false || ['cached', 'indexed'].includes(tool.external_web_access)) {
-    invalid('GCP search supports live web access only.', `${param}.external_web_access`);
+    invalid('GCP search supports live web access only. In Codex, switch cached search to Live, or set web_search = "live" in config.toml.', `${param}.external_web_access`);
   }
   for (const key of ['filters', 'user_location']) {
     if (present(tool[key]) && (!object(tool[key]) || Object.values(tool[key]).some(present))) {

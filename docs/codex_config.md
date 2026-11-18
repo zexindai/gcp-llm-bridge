@@ -82,6 +82,12 @@ model_catalog_json = 'C:\Users\YOUR_USER\.codex\models.json'
 
 上面的配置已启用实时联网搜索。Codex 通过 Bridge 的 `/v1/alpha/search` 调用 GCP Google Search，支持关键词搜索和来源引用；不支持打开网页、点击链接、页面内查找、截图，以及精确域名、时效或位置筛选。
 
+在 Codex 中将搜索模式从缓存搜索切换为实时搜索（Live），也可以修改配置文件：
+
+```toml
+web_search = "live"
+```
+
 如需关闭搜索，将顶层配置改为：
 
 ```toml
