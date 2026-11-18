@@ -75,13 +75,13 @@ UPSTREAM_URL=https://aiplatform.googleapis.com/v1/projects/YOUR_PROJECT_ID/locat
 
 ## 模型目录
 
-[doc/models.txt](../doc/models.txt) 和 `.env.example` 提供模型目录示例。实际展示列表由 `.env` 中的 `AVAILABLE_MODELS` 决定，多个模型 ID 用逗号分隔，例如：
+[docs/models.txt](models.txt) 和 `.env.example` 提供模型目录示例。实际展示列表由 `.env` 中的 `AVAILABLE_MODELS` 决定，多个模型 ID 用逗号分隔，例如：
 
 ```dotenv
 AVAILABLE_MODELS=google/gemini-4-argon,google/gemini-3.8-flash
 ```
 
-修改 `doc/models.txt` 不会自动更新运行配置。
+修改 `docs/models.txt` 不会自动更新运行配置。
 
 `GET /v1/models` 从 `AVAILABLE_MODELS` 生成 OpenAI models 格式，`owned_by` 使用 publisher 前缀。这个目录：
 
